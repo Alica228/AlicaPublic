@@ -19,7 +19,7 @@ def Price(age):
     """
     return {age < 18        : 0,
             18 <= age < 25  : 990,
-            25 < age        : 1390
+            25 <= age        : 1390
         }[True]
 
 while True:
