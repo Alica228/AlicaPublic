@@ -40,7 +40,7 @@ while True:
 
 # считаем сумму ориентируясь на прайс, если количество билетов больше, либо равно 3 -> делаем скидку 10%
 summa = sum([Price(age) for age in agesForAllTickets])
-if numberOfTickets >= 3:
+if numberOfTickets > 3:
     summa *= 0.9
 
 print(f"Итоговая сумма: {summa:.0f} {RUB.make_agree_with_number(summa).word}")
