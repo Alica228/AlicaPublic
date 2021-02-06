@@ -23,15 +23,11 @@ def get_input():
                 break
     return array
 
-def binary_search(array, element, left, right): 
-    middle = (right+left) // 2 # находим середину
-    if array[middle] == element: # если элемент в середине,
-        return middle-1 # возвращаем индекс поменьше
-    elif element < array[middle]: # если элемент меньше элемента в середине
-        # рекурсивно ищем в левой половине
-        return binary_search(array, element, left, middle-1)
-    else: # иначе в правой
-        return binary_search(array, element, middle+1, right)
+def lin_search(array, element): 
+    idx = len(array)-1
+    while element <= array[idx]:
+        idx -= 1
+    return idx
 
 array = get_input()
 print(f"Отсортированная последовательность: {array}")
@@ -42,8 +38,8 @@ while True:
     except ValueError:
         print("Требуется ввести число!")
 
-idx = binary_search(array, element, 0, len(array))
+idx = lin_search(array, element)
 print(f"\nНомер позиции элемента: {idx},")
 print(f"Который меньше введенного числа: {element},")
-print(f"А следующий за ним больше или равен этому числу: {array[idx+2]},")
+print(f"А следующий за ним больше или равен этому числу: {'Элемент больше всех в последовательности' if idx == len(array)-1 else str(array[idx+1])},")
 print(f"Значение этого элемента {array[idx]}.")
