@@ -1,19 +1,19 @@
 import os
 import time
-from .elements import WebElement
-from .base import BasePage
+from pets.pages.elements import WebElement
+from pets.pages.base import WebPage
 
 
-class AuthPage(BasePage):
+class AuthPage(WebPage):
 
-    def __init__(self, driver, timeout=10):
-        super().__init__(driver, timeout)
-        url = os.getenv("LOGIN_URL") or "http://petfriends1.herokuapp.com/login"
-        driver.get(url)
-        email = WebElement(id='email')
-        passw = WebElement(id='pass')
-        btn = WebElement(id='btn-success')
-        time.sleep(3)
+    def __init__(self, driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or "http://petfriends1.herokuapp.com/login"
+        super().__init__(driver, url)
+
+    email = WebElement(id="email")
+    passw = WebElement(id="pass")
+    btn = WebElement(class_name="btn-success")
 
     def enter_email(self, value):
         self.email.send_keys(value)
